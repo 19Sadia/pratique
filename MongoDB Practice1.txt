@@ -1,0 +1,392 @@
+Microsoft Windows [Version 10.0.22631.3447]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Sadiy>mongosh
+Current Mongosh Log ID: 661ea196ec4657db92117b7a
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.2.4
+Using MongoDB:          7.0.8
+Using Mongosh:          2.2.4
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2024-04-16T18:21:38.375+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> show db
+MongoshInvalidInputError: [COMMON-10001] 'db' is not a valid argument for "show".
+test> show dataBase
+MongoshInvalidInputError: [COMMON-10001] 'dataBase' is not a valid argument for "show".
+test> show dbs
+admin   112.00 KiB
+config   84.00 KiB
+local    72.00 KiB
+test> use mongo_practice
+switched to db mongo_practice
+mongo_practice> db.createCollection('movie')
+{ ok: 1 }
+mongo_practice> show collection
+MongoshInvalidInputError: [COMMON-10001] 'collection' is not a valid argument for "show".
+mongo_practice> show collections
+movie
+mongo_practice> db.movies.insert({title:"Fight Club", writer: "Chuck Palahniuk", year: "1999", actors:["Brad Pitt", "Edward Norton"]})
+DeprecationWarning: Collection.insert() is deprecated. Use insertOne, insertMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('661ea236ec4657db92117b7b') }
+}
+mongo_practice> db.movies.find()
+[
+  {
+    _id: ObjectId('661ea236ec4657db92117b7b'),
+    title: 'Fight Club',
+    writer: 'Chuck Palahniuk',
+    year: '1999',
+    actors: [ 'Brad Pitt', 'Edward Norton' ]
+  }
+]
+mongo_practice> db.movies.insert({title:"Inglorious Basterds", writer:"Quentin Tarantino", year:"2009", actors:["Brad Pitt", "Diane Kruger", "Eli Roth"]}
+...
+...
+...
+... db.movies.find()
+Uncaught:
+SyntaxError: Unexpected token, expected "," (5:0)
+
+  3 |
+  4 |
+> 5 | db.movies.find()
+    | ^
+  6 |
+
+mongo_practice> db.movies.insertMany([{title:"Inglorious Basterds", writer:"Quentin Tarantino", year:"2009", actors:["Brad Pitt", "Diane Kruger", "Eli Roth"]},
+...  {
+...     title: "The Hobbit: An Unexpected Journey",
+...     writer: "J.R.R. Tolkien",
+...     year: "2012",
+...     franchise: "The Hobbit"
+...   },
+...   {
+...     title: "The Hobbit: The Desolation of Smaug",
+...     writer: "J.R.R. Tolkien",
+...     year: "2013",
+...     franchise: "The Hobbit"
+...   },
+...   {
+...     title: "The Hobbit: The Battle of the Five Armies",
+...     writer: "J.R.R. Tolkien",
+...     year: "2002",
+...     franchise: "The Hobbit",
+...     synopsis: "Bilbo and Company are forced to engage in a war against an array of combatants and keep the Lonely Mountain from falling into the hands of a rising darkness."
+...   },
+...   {
+...     title: "Pee Wee Herman's Big Adventure",
+...   },
+...   {
+...     title: "Avatar"
+...   }
+... ])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('661ea3faec4657db92117b7c'),
+    '1': ObjectId('661ea3faec4657db92117b7d'),
+    '2': ObjectId('661ea3faec4657db92117b7e'),
+    '3': ObjectId('661ea3faec4657db92117b7f'),
+    '4': ObjectId('661ea3faec4657db92117b80'),
+    '5': ObjectId('661ea3faec4657db92117b81')
+  }
+}
+mongo_practice> db.movies.find()
+[
+  {
+    _id: ObjectId('661ea236ec4657db92117b7b'),
+    title: 'Fight Club',
+    writer: 'Chuck Palahniuk',
+    year: '1999',
+    actors: [ 'Brad Pitt', 'Edward Norton' ]
+  },
+  {
+    _id: ObjectId('661ea3faec4657db92117b7c'),
+    title: 'Inglorious Basterds',
+    writer: 'Quentin Tarantino',
+    year: '2009',
+    actors: [ 'Brad Pitt', 'Diane Kruger', 'Eli Roth' ]
+  },
+  {
+    _id: ObjectId('661ea3faec4657db92117b7d'),
+    title: 'The Hobbit: An Unexpected Journey',
+    writer: 'J.R.R. Tolkien',
+    year: '2012',
+    franchise: 'The Hobbit'
+  },
+  {
+    _id: ObjectId('661ea3faec4657db92117b7e'),
+    title: 'The Hobbit: The Desolation of Smaug',
+    writer: 'J.R.R. Tolkien',
+    year: '2013',
+    franchise: 'The Hobbit'
+  },
+  {
+    _id: ObjectId('661ea3faec4657db92117b7f'),
+    title: 'The Hobbit: The Battle of the Five Armies',
+    writer: 'J.R.R. Tolkien',
+    year: '2002',
+    franchise: 'The Hobbit',
+    synopsis: 'Bilbo and Company are forced to engage in a war against an array of combatants and keep the Lonely Mountain from falling into the hands of a rising darkness.'
+  },
+  {
+    _id: ObjectId('661ea3faec4657db92117b80'),
+    title: "Pee Wee Herman's Big Adventure"
+  },
+  { _id: ObjectId('661ea3faec4657db92117b81'), title: 'Avatar' }
+]
+mongo_practice> // get all documents
+
+mongo_practice> db.movies.find()
+[
+  {
+    _id: ObjectId('661ea236ec4657db92117b7b'),
+    title: 'Fight Club',
+    writer: 'Chuck Palahniuk',
+    year: '1999',
+    actors: [ 'Brad Pitt', 'Edward Norton' ]
+  },
+  {
+    _id: ObjectId('661ea3faec4657db92117b7c'),
+    title: 'Inglorious Basterds',
+    writer: 'Quentin Tarantino',
+    year: '2009',
+    actors: [ 'Brad Pitt', 'Diane Kruger', 'Eli Roth' ]
+  },
+  {
+    _id: ObjectId('661ea3faec4657db92117b7d'),
+    title: 'The Hobbit: An Unexpected Journey',
+    writer: 'J.R.R. Tolkien',
+    year: '2012',
+    franchise: 'The Hobbit'
+  },
+  {
+    _id: ObjectId('661ea3faec4657db92117b7e'),
+    title: 'The Hobbit: The Desolation of Smaug',
+    writer: 'J.R.R. Tolkien',
+    year: '2013',
+    franchise: 'The Hobbit'
+  },
+  {
+    _id: ObjectId('661ea3faec4657db92117b7f'),
+    title: 'The Hobbit: The Battle of the Five Armies',
+    writer: 'J.R.R. Tolkien',
+    year: '2002',
+    franchise: 'The Hobbit',
+    synopsis: 'Bilbo and Company are forced to engage in a war against an array of combatants and keep the Lonely Mountain from falling into the hands of a rising darkness.'
+  },
+  {
+    _id: ObjectId('661ea3faec4657db92117b80'),
+    title: "Pee Wee Herman's Big Adventure"
+  },
+  { _id: ObjectId('661ea3faec4657db92117b81'), title: 'Avatar' }
+]
+mongo_practice> // get all documents with writer set to "Quentin Tarantino"
+
+mongo_practice> db.movies.find({writer:'Quentin Tarantino'})
+[
+  {
+    _id: ObjectId('661ea3faec4657db92117b7c'),
+    title: 'Inglorious Basterds',
+    writer: 'Quentin Tarantino',
+    year: '2009',
+    actors: [ 'Brad Pitt', 'Diane Kruger', 'Eli Roth' ]
+  }
+]
+mongo_practice> // get all documents where actors include "Brad Pitt"
+
+mongo_practice> db.movies.find({actors:'Brad Pitt'})
+[
+  {
+    _id: ObjectId('661ea236ec4657db92117b7b'),
+    title: 'Fight Club',
+    writer: 'Chuck Palahniuk',
+    year: '1999',
+    actors: [ 'Brad Pitt', 'Edward Norton' ]
+  },
+  {
+    _id: ObjectId('661ea3faec4657db92117b7c'),
+    title: 'Inglorious Basterds',
+    writer: 'Quentin Tarantino',
+    year: '2009',
+    actors: [ 'Brad Pitt', 'Diane Kruger', 'Eli Roth' ]
+  }
+]
+mongo_practice> // get all documents with franchise set to
+ "The Hobbit.
+
+mongo_practice>
+
+mongo_practice> db.movies.find({franchise:'The Hobbit'})
+[
+  {
+    _id: ObjectId('661ea3faec4657db92117b7d'),
+    title: 'The Hobbit: An Unexpected Journey',
+    writer: 'J.R.R. Tolkien',
+    year: '2012',
+    franchise: 'The Hobbit'
+  },
+  {
+    _id: ObjectId('661ea3faec4657db92117b7e'),
+    title: 'The Hobbit: The Desolation of Smaug',
+    writer: 'J.R.R. Tolkien',
+    year: '2013',
+    franchise: 'The Hobbit'
+  },
+  {
+    _id: ObjectId('661ea3faec4657db92117b7f'),
+    title: 'The Hobbit: The Battle of the Five Armies',
+    writer: 'J.R.R. Tolkien',
+    year: '2002',
+    franchise: 'The Hobbit',
+    synopsis: 'Bilbo and Company are forced to engage in a war against an array of combatants and keep the Lonely Mountain from falling into the hands of a rising darkness.'
+  }
+]
+mongo_practice> // get all movies released in the 90s
+
+mongo_practice> db.movies.find({years:{$gt:1990,$lt:2000}})
+
+mongo_practice> db.movies.find({years:{$gt:'1990',$lt:'2000'})
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:45)
+
+> 1 | db.movies.find({years:{$gt:'1990',$lt:'2000'})
+    |                                              ^
+  2 |
+
+mongo_practice> db.movies.find({years:{$gt:'1990',$lt:'2000'}})
+
+mongo_practice> db.movies.find({year:{$gt:"1990", $lt:"2000"}})
+[
+  {
+    _id: ObjectId('661ea236ec4657db92117b7b'),
+    title: 'Fight Club',
+    writer: 'Chuck Palahniuk',
+    year: '1999',
+    actors: [ 'Brad Pitt', 'Edward Norton' ]
+  }
+]
+mongo_practice> // get all movies released before the year
+ 2000 or after 2010
+
+mongo_practice> db.movies.find({$or:[{years:{$gt:'2010'}},{years:{$lt:'2000'}}]})
+
+mongo_practice> db.movies.find({$or:[{year:{$gt:'2010'}},{year:{$lt:'2000'}}]})
+[
+  {
+    _id: ObjectId('661ea236ec4657db92117b7b'),
+    title: 'Fight Club',
+    writer: 'Chuck Palahniuk',
+    year: '1999',
+    actors: [ 'Brad Pitt', 'Edward Norton' ]
+  },
+  {
+    _id: ObjectId('661ea3faec4657db92117b7d'),
+    title: 'The Hobbit: An Unexpected Journey',
+    writer: 'J.R.R. Tolkien',
+    year: '2012',
+    franchise: 'The Hobbit'
+  },
+  {
+    _id: ObjectId('661ea3faec4657db92117b7e'),
+    title: 'The Hobbit: The Desolation of Smaug',
+    writer: 'J.R.R. Tolkien',
+    year: '2013',
+    franchise: 'The Hobbit'
+  }
+]
+mongo_practice> //find all movies that have a synopsis that contains the word "Bilbo"
+
+mongo_practice> db.movies.find({$or:[{year:{$gt:'2010'}},{year:{$lt:'2000'}}]})
+[
+  {
+    _id: ObjectId('661ea236ec4657db92117b7b'),
+    title: 'Fight Club',
+    writer: 'Chuck Palahniuk',
+    year: '1999',
+    actors: [ 'Brad Pitt', 'Edward Norton' ]
+  },
+  {
+    _id: ObjectId('661ea3faec4657db92117b7d'),
+    title: 'The Hobbit: An Unexpected Journey',
+    writer: 'J.R.R. Tolkien',
+    year: '2012',
+    franchise: 'The Hobbit'
+  },
+  {
+    _id: ObjectId('661ea3faec4657db92117b7e'),
+    title: 'The Hobbit: The Desolation of Smaug',
+    writer: 'J.R.R. Tolkien',
+    year: '2013',
+    franchise: 'The Hobbit'
+  }
+]
+mongo_practice> // find all movies that have a synopsis that contains the word "Gandalf"
+
+mongo_practice> db.movies.find({synopsis:{$regex:'Bilbo'}}
+
+... db.movies.find({synopsis:{$regex:'Bilbo'}}
+Uncaught:
+SyntaxError: Unexpected token, expected "," (2:0)
+
+  1 | db.movies.find({synopsis:{$regex:'Bilbo'}}
+> 2 | db.movies.find({synopsis:{$regex:'Bilbo'}}
+    | ^
+  3 |
+
+mongo_practice> db.movies.find({synopsis:{$regex:'Bilbo'}}
+
+... db.movies.find({synopsis:{$regex:'Bilbo'}}
+Uncaught:
+SyntaxError: Unexpected token, expected "," (2:0)
+
+  1 | db.movies.find({synopsis:{$regex:'Bilbo'}}
+> 2 | db.movies.find({synopsis:{$regex:'Bilbo'}}
+    | ^
+  3 |
+
+mongo_practice> db.movies.find({synopsis:{$regex:'Bilbo'}}
+)
+[
+  {
+    _id: ObjectId('661ea3faec4657db92117b7f'),
+    title: 'The Hobbit: The Battle of the Five Armies',
+    writer: 'J.R.R. Tolkien',
+    year: '2002',
+    franchise: 'The Hobbit',
+    synopsis: 'Bilbo and Company are forced to engage in a war against an array of combatants and keep the Lonely Mountain from falling into the hands of a rising darkness.'
+  }
+]
+mongo_practice> // find all movies that have a synopsis that contains the word "Bilbo" and not the word "Gandalf"
+
+mongo_practice> db.movies.find({$and:[{synopsis:{$regex:'Bilbo'}},{synopsis:{$not:/Gandalf/}}]})
+[
+  {
+    _id: ObjectId('661ea3faec4657db92117b7f'),
+    title: 'The Hobbit: The Battle of the Five Armies',
+    writer: 'J.R.R. Tolkien',
+    year: '2002',
+    franchise: 'The Hobbit',
+    synopsis: 'Bilbo and Company are forced to engage in a war against an array of combatants and keep the Lonely Mountain from falling into the hands of a rising darkness.'
+  }
+]
+mongo_practice> // find all movies that have a synopsis that contains the word "Gandalf"
+
+mongo_practice> db.movies.find({synopsis:{$regex:"Gandalf"
+}})
+
+mongo_practice> db.movies.find({synopsis:{$regex:'Gandalf'}})
+
+mongo_practice> // find all movies that have a synopsis that contains the word "dwarves" or "hobbit"
+
+mongo_practice> db.movies.find({$or:[{synopsis:{$regex:'dwarves'}},{synopsis:{$regex:'hobbit'}}]})
+
+mongo_practice> db.movies.find({$or:[{synopsis:{$regex:"dwarves"}}, {synopsis:{$regex:"hobbit"}}]})
+mongo_practice> db.collection.save(movies)
